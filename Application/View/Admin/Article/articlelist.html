@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/studyblog/Public/admin/css/ch-ui.admin.css">
+	<link rel="stylesheet" href="/studyblog/Public/admin/font/css/font-awesome.min.css">
+    <script type="text/javascript" src="/studyblog/Public/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/studyblog/Public/admin/js/ch-ui.admin.js"></script>
+</head>
+<body>
+    <!--面包屑导航 开始-->
+    <div class="crumb_warp">
+        <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
+        <i class="fa fa-home"></i> <a href="index.php?p=admin&c=index&a=welcome">首页</a> &raquo; 文章列表
+    </div>
+    <!--面包屑导航 结束-->
+    
+	<!--结果页快捷搜索框 开始  独立开发 -->
+	<div class="search_wrap">
+        <form action="" method="post">
+            <div >&nbsp;&nbsp;&nbsp;<strong>文章检索</strong>&nbsp;&nbsp;&nbsp;
+                分类:
+                    <select  name="category">
+                        <option value="">全部</option>
+                        {foreach $categoryList as $v}
+                        <option value="{$v.id}" {(isset($smarty.post.category) && $smarty.post.category==$v.id)?'selected':''}>{str_repeat('&nbsp;',$v.level*8)}{$v.name}</option>
+                        {/foreach}
+                    </select>
+                &nbsp;&nbsp;标题:
+                <input type="text" name="title" placeholder="标题" style="width:158px;"  value="{(isset($smarty.post.title))?$smarty.post.title:''}">
+                &nbsp;&nbsp;关键字:
+                <input type="text" name="keywords" placeholder="关键字" style="width:158px;" value="{(isset($smarty.post.keywords))?$smarty.post.keywords:''}">
+                &nbsp;&nbsp;是否置顶：
+                <select name="isTuijian">
+                    <option value="">不限</option>
+                    <option value="1" {(isset($smarty.post.isTuijian) && $smarty.post.isTuijian=='1')?'selected':''}>是</option>
+                    <option value="0" {(isset($smarty.post.isTuijian) && $smarty.post.isTuijian=='0')?'selected':''}>否</option>
+                </select>
+                &nbsp;&nbsp;是否公开：
+                <select name="display">
+                    <option value="">不限</option>
+                    <option value="1" {(isset($smarty.post.display) && $smarty.post.display=='1')?'selected':''}>是</option>
+                    <option value="0" {(isset($smarty.post.display) && $smarty.post.display=='0')?'selected':''}>否</option>
+                </select>
+                &nbsp;&nbsp;<input type="submit" name="sub" value="查询">
+            </div>
+        </form>
+    </div>
+    <!--结果页快捷搜索框 结束-->
+
+    <!--搜索结果页面 列表 开始-->
+    <form action="#" method="post">
+        <div class="result_wrap">
+            <!--快捷导航 开始 独立开发-->
+            <div class="result_content">
+                <div class="short_wrap">
+                    <a href="#"><i class="fa fa-plus"></i>新增文章</a>
+                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
+                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                </div>
+            </div>
+            <!--快捷导航 结束-->
+        </div>
+
+        <div class="result_wrap">
+            <div class="result_content">
+                <table class="list_tab">
+                    <tr>
+                        <!--
+                        <th class="tc" width="5%"><input type="checkbox" name=""></th>
+                        <th class="tc">排序</th>
+                        -->
+                        <th class="tc">ID</th>
+                        <th>标题</th>
+                        <th>内容</th>
+                        <th>分类</th>
+                        <th>审核状态</th>
+                        <th>置顶</th>
+                        <th>点击</th>
+                        <th>发布人</th>
+                        <th>更新时间</th>
+                        <th>操作</th>
+                    </tr>
+                    {foreach $listdata as $v}
+                    <tr>
+                        <!--
+                        <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
+                        <td class="tc">
+                            <input type="text.xml" name="ord[]" value="0">
+                        </td>
+                        -->
+                        <td class="tc">{$v.id}</td>
+                        <td>
+                            <a href="#">{$v.title}</a>
+                        </td>
+                        <td>{$v.content}</td>
+                        <td>{$v.categoryName}</td>
+                        <td>{$v.display}</td>
+                        <td>{$v.isTuijian}</td>
+                        <td>{$v.click}</td>
+                        <td>{$v.author}</td>
+                        <td>{$v.updated_time|date_format:'Y-m-d H:i:s'}</td>
+                        <td>
+                            <a href="index.php?p=admin&c=article&a=update&id={$v.id}">修改</a>
+                            <a href="index.php?p=admin&c=article&a=delete&id={$v.id}">删除</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+
+                </table>
+
+            </div>
+            <div class="page_nav" >
+              {$page_str}
+            </div>
+        </div>
+    </form>
+    <!--搜索结果页面 列表 结束-->
+
+</body>
+</html>

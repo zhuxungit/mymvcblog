@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/studyblog/Public/admin/css/ch-ui.admin.css">
+    <link rel="stylesheet" href="/studyblog/Public/admin/font/css/font-awesome.min.css">
+</head>
+<body>
+    <!--面包屑导航 开始-->
+    <div class="crumb_warp">
+        <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
+        <i class="fa fa-home"></i> <a href="index.php?p=admin&c=index&a=welcome">首页</a> &raquo; 添加分类
+    </div>
+    <!--面包屑导航 结束-->
+
+    <div class="result_wrap">
+        <form action="#" method="post">
+            <input type="hidden" name="id" value="{$rowdata.id}">
+            <table class="add_tab">
+                <tbody>
+                    <tr>
+                        <th width="120"><i class="require">*</i>所属分类：</th>
+                        <td>
+                            <select name="pid">
+                                <option value="0">==请选择==</option>
+                                {foreach $listdata as $v}
+                                {if $v.id eq $rowdata.pid}
+                                <option value="{$v.id}" selected>{str_repeat('&nbsp;',$v.level*8)}{$v.name}</option>
+                                {else}
+                                <option value="{$v.id}">{str_repeat('&nbsp;',$v.level*8)}{$v.name}</option>
+                                {/if}
+                                {/foreach}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="require">*</i>分类名称：</th>
+                        <td>
+                            <input type="text" class="lg" name="name" value="{$rowdata.name}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>排序：</th>
+                        <td>
+                            <input type="text" name="sort" value="{$rowdata.sort}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input type="submit" value="提交">
+                            <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

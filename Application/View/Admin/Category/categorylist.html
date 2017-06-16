@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/studyblog/Public/admin/css/ch-ui.admin.css">
+    <link rel="stylesheet" href="/studyblog/Public/admin/font/css/font-awesome.min.css">
+    <script type="text/javascript" src="/studyblog/Public/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/studyblog/Public/admin/js/ch-ui.admin.js"></script>
+</head>
+<body>
+    <!--面包屑导航 开始-->
+    <div class="crumb_warp">
+        <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
+        <i class="fa fa-home"></i> <a href="index.php?p=admin&c=index&a=welcome">首页</a> &raquo; 分类列表
+    </div>
+    <!--面包屑导航 结束-->
+    
+    <!--结果页快捷搜索框 开始  独立开发
+    <div class="search_wrap">
+        <form action="" method="post">
+            <table class="search_tab">
+                <tr>
+                    <th width="78">选择分类:</th>
+                    <td>
+                        <select onchange="javascript:location.href=this.value;">
+                            <option value="">全部</option>
+                            <option value="http://www.baidu.com">百度</option>
+                            <option value="http://www.sina.com">新浪</option>
+                        </select>
+                    </td>
+                    <th width="70">关键字:</th>
+                    <td><input type="text.xml" name="keywords" placeholder="关键字"></td>
+                    <td><input type="submit" name="sub" value="查询"></td>
+                </tr>
+            </table>
+        </form>
+    </div>-->
+    <!--结果页快捷搜索框 结束-->
+
+    <!--搜索结果页面 列表 开始-->
+    <form action="#" method="post">
+        <div class="result_wrap">
+            <!--快捷导航 开始 独立开发
+            <div class="result_content">
+                <div class="short_wrap">
+                    <a href="#"><i class="fa fa-plus"></i>新增文章</a>
+                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
+                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                </div>
+            </div>-->
+            <!--快捷导航 结束-->
+        </div>
+
+        <div class="result_wrap">
+            <div class="result_content">
+                <table class="list_tab">
+                    <tr>
+                        <!--
+                        <th class="tc" width="5%"><input type="checkbox" name=""></th>
+                        <th class="tc">排序</th>
+                        -->
+                        <th class="tc">ID</th>
+                        <th>分类名称</th>
+                        <th>排序</th>
+                        <th>是否显示</th>
+                        <th>更新时间</th>
+                        <th>操作</th>
+                    </tr>
+                    {foreach $listdata as $v}
+                    <tr>
+                        <!--
+                        <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
+                        <td class="tc">
+                            <input type="text.xml" name="ord[]" value="0">
+                        </td>
+                        -->
+                        <td class="tc">{$v.id}</td>
+                        <td>
+                            <a href="#">{str_repeat('&nbsp;',$v.level*8)}{$v.name}</a>
+                        </td>
+                        <td>{$v.sort}</td>
+                        <td>
+                            {if $v.display}
+                            <font color="green">是</font>
+                            {else}
+                            <font color="red">否</font>
+                            {/if}
+                        </td>
+
+                        <td>{$v.updated_time}</td>
+                        <td>
+                            <a href="index.php?p=admin&c=category&a=update&id={$v.id}">修改</a>
+                            <a href="index.php?p=admin&c=category&a=delete&id={$v.id}">删除</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+
+
+                </table>
+            </div>
+        </div>
+    </form>
+    <!--搜索结果页面 列表 结束-->
+
+</body>
+</html>

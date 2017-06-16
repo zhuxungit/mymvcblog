@@ -1,0 +1,32 @@
+{include file='../common/head.html'}
+
+    <div id="divMain">
+    {foreach $listdata as $k=>$v}
+		<div class="post multi">
+			<h4 class="post-date">{$v.updated_time|date_format:'Y-m-d H:i'}</h4>
+			<h2 class="post-title"><a href="index.php?p=home&c=article&a=detail&aid={$v.id}" target="_blank">{$v.title}</a></h2>
+			<div class="post-body">
+				{$v.content}
+			</div>
+			<h5 class="post-tags"></h5>
+			<h6 class="post-footer">
+				作者: {$v.author}| 分类:{$v.categoryName} | 阅读:{$v.click} | 赞:{$v.zan} | 评论:{$v.comment}</h6>
+		</div>
+    {/foreach}
+
+		<div class="pagebar" >
+             {$pageStr}
+		</div>
+	</div>
+<div id="divSidebar">
+ </div>
+		<div id="divBottom">
+        	<h3 id="BlogCopyRight">
+                                            	Copyright © 2008-2028 PHP150912 All Rights Reserved            </h3>
+			<h4 id="BlogPowerBy">Powered by <a href="" title="myblog" target="_blank">myblog V1.0 Release 20151116</a></h4>
+		</div><div class="clear"></div>
+	</div><div class="clear"></div>
+	</div><div class="clear"></div>
+</div>
+</body>
+</html>

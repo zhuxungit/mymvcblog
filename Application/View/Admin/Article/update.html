@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/studyblog/Public/admin/css/ch-ui.admin.css">
+	<link rel="stylesheet" href="/studyblog/Public/admin/font/css/font-awesome.min.css">
+</head>
+<body>
+    <!--面包屑导航 开始-->
+    <div class="crumb_warp">
+        <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
+        <i class="fa fa-home"></i> <a href="index.php?p=admin&c=index&a=index">首页</a> &raquo; 添加文章
+    </div>
+    <!--面包屑导航 结束-->
+    
+    <div class="result_wrap">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{$rowdata.id}">
+            <table class="add_tab">
+                <tbody>
+                    <tr>
+                        <th width="120"><i class="require">*</i>分类：</th>
+                        <td>
+                            <select name="cid">
+
+                                <option value="0">==请选择==</option>
+                                {foreach $listdata as $v}
+                                {if $rowdata.cid eq $v.id}
+                                <option value="{$v.id}" selected>{str_repeat('&nbsp;',$v.level*8)}{$v.name}</option>
+                                {else}
+                                <option value="{$v.id}" >{str_repeat('&nbsp;',$v.level*8)}{$v.name}</option>
+                                {/if}
+                                {/foreach}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="require">*</i>标题：</th>
+                        <td>
+                            <input type="text" class="lg" name="title" value="{$rowdata.title}">
+                            <p>标题可以写30个字</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="require">*</i>缩略图：</th>
+                        <td><input type="file" name="image"></td>
+                    </tr>
+                    <tr>
+                        <th>作者：</th>
+                        <td>
+                            <input type="text" name="author" value="{$rowdata.author}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>关键词：</th>
+                        <td>
+                            <textarea name="keywords">{$rowdata.keywords}</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>描述：</th>
+                        <td>
+                            <textarea name="description" >{$rowdata.description}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>文章内容：</th>
+                        <td>
+                            <textarea id="content" class="lg" name="content">{$rowdata.content}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th title="推荐将在首页显示">是否推荐：</th>
+                        <td>
+                            <label for=""><input type="radio" name="isTuijian" {($rowdata.isTuijian==1)?'checked':''} value="1">推荐</label>
+                            <label for=""><input type="radio" name="isTuijian" {($rowdata.isTuijian==0)?'checked':''} value="0">不推荐</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>是否显示：</th>
+                        <td>
+                            <label for=""><input type="radio" name="display" {($rowdata.display==1)?checked:''} value="1">隐藏</label>
+                            <label for=""><input type="radio" name="display" {($rowdata.display==0)?checked:''} value="0">显示</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input type="submit" value="提交">
+                            <input type="button" class="back" onclick="history.go(-1)" value="返回">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <script src="/studyblog/Public/common/ueditor/ueditor.config.js"></script>
+    <script src="/studyblog/Public/common/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        UE.getEditor('content',{
+            initialFrameWidth:970,
+            initialFrameHeight:250
+        });
+    </script>
+</body>
+</html>

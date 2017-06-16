@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/studyblog/Public/admin/css/ch-ui.admin.css">
+	<link rel="stylesheet" href="/studyblog/Public/admin/font/css/font-awesome.min.css">
+</head>
+<body>
+	<!--面包屑导航 开始-->
+	<div class="crumb_warp">
+		<!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
+		<i class="fa fa-home"></i> <a href="index.php?p=admin&c=index&a=welcome">首页</a> &raquo; 欢迎页
+	</div>
+	<!--面包屑导航 结束-->
+	
+	<!--结果集标题与导航组件 开始-->
+	<div class="result_wrap">
+        <div class="result_title">
+            <h3>快捷操作</h3>
+        </div>
+        <div class="result_content">
+            <div class="short_wrap">
+                <a href="#"><i class="fa fa-plus"></i>新增文章</a>
+                <a href="#"><i class="fa fa-plus"></i>新增分类</a>
+            </div>
+        </div>
+    </div>
+    <!--结果集标题与导航组件 结束-->
+
+    <div class="result_wrap avatar">
+        <div class="result_title">
+            <img src=".//studyblog/Public/admin/img/avatar.png" width="100px" height="100px" />
+        </div>
+        <div class="result_content">您好，{$smarty.session.userinfo.username}，
+            这是您第{$smarty.session.userinfo.login_count}次登录，上次登录为{$smarty.session.userinfo.last_login_time}。上次登录的IP：{$smarty.session.userinfo.last_login_ip}
+        </div>
+    </div>
+
+	
+    <div class="result_wrap">
+        <div class="result_title">
+            <h3>系统基本信息</h3>
+        </div>
+        <div class="result_content">
+            <ul>
+                <li>
+                    <label>操作系统</label><span>{$smarty.const.PHP_OS}</span>
+                </li>
+                <li>
+                    <label>运行环境</label><span>{$smarty.server.SERVER_SOFTWARE}</span>
+                </li>
+                <li>
+                    <label>上传附件限制</label><span>{$smarty.session.userinfo.upload_size}</span>
+                </li>
+                <li>
+                    <label>北京时间</label><span id="bjtime">2014年3月18日 21:08:24</span>
+                </li>
+                <li>
+                    <label>服务器域名/IP</label><span>{$smarty.server.SERVER_NAME} [ {$smarty.server.SERVER_ADDR} ]</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<!--结果集列表组件 结束-->
+    <script>
+        function get_time() {
+            var date=new Date();//实例化日期
+            document.getElementById('bjtime').innerHTML=date.toLocaleString();
+        }
+         window.onload=function () {
+        setInterval('get_time()',1000);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+{include file='../common/head.html'}
+
+    <div id="divMain">
+
+        <div class="post single">
+            <h4 class="post-date">{$rowdata.updated_time|date_format:'Y-m-d H:i'}</h4>
+            <h2 class="post-title">{$rowdata.title}</h2>
+            <div class="post-body">{$rowdata.content}</div>
+            <h5 class="post-tags"></h5>
+            <h6 class="post-footer">
+                作者:{$rowdata.author}| 分类:{$rowdata.categoryName} | 阅读:{$rowdata.click}| 评论:{$rowdata.comment}| <a href="index.php?p=home&c=article&a=zan&aid={$rowdata.id}">赞</a>:{$rowdata.zan}</h6>
+        </div>
+
+        <label id="AjaxCommentBegin"></label>
+        <!--评论输出-->
+        <ul class="msg msghead">
+            <li class="tbname">评论列表:</li>
+        </ul>
+        <ul id="cmt1" class="msg">
+            {foreach $commentdata as $k=>$v}
+            <li class="msgname" style="margin-left:{$v.level*60}px ">
+                <img width="32" alt="" src="image/admin/0.png" class="avatar">&nbsp;
+                <span class="commentname"><a target="_blank" rel="nofollow" href="">{$v.username}</a></span>
+                <br>
+                <small>{$v.created_time|date_format:'Y-m-d H:i'}&nbsp;
+                <span class="revertcomment">
+                <a onclick="setPid({$v.id})"  href="#comment">回复</a></span></small></li>
+                <li class="msgarticle">{$v.content}<label id="AjaxComment1"></label>
+                <label id="cmt2"></label>
+            </li>
+            {/foreach}
+        </ul>
+
+        <!--评论翻页条输出-->
+        <div class="pagebar commentpagebar">
+        </div>
+        <label id="AjaxCommentEnd"></label>
+
+        <!--评论框-->
+        <div class="post" id="divCommentPost">
+            <p class="posttop"><a name="comment">admin发表评论:</a><a rel="nofollow" id="cancel-reply" href="#divCommentPost" style="display:none;"><small>取消回复</small></a></p>
+
+            <form id="frmSumbit" target="_self" method="post" action="index.php?p=home&c=comment&a=add" >
+                <p><label for="txaArticle">正文(*)</label></p>
+                <p><textarea name="content" id="txaArticle" class="text" cols="50" rows="4" tabindex="6" ></textarea></p>
+                <p><input name="sumbit" type="submit" tabindex="7" value="提交" class="button" /></p>
+
+                <!--增加数据-->
+                <input type="hidden" name="aid" value="{$rowdata.id}">
+                <input type="hidden" id="comment_id" name="pid" value="0">
+            </form>
+
+            <p class="postbottom">☆欢迎发表您的看法、交流您的观点。</p>
+        </div>
+
+    </div>
+
+		<div id="divBottom">
+        	<h3 id="BlogCopyRight">
+                                            	Copyright © 2008-2028 tqtqtq.com All Rights Reserved            </h3>
+			<h4 id="BlogPowerBy">Powered by <a href="http://www.tqtqtq.com/" title="TQBlog" target="_blank">TQBlog V2.0 Release 20140101</a></h4>
+		</div>
+
+        <div class="clear"></div>
+	</div><div class="clear"></div>
+	</div><div class="clear"></div>
+</div>
+<script>
+    function setPid(pid) {
+        document.getElementById('comment_id').value=pid;
+    }
+</script>
+
+
+</body>
+</html><!--86.655ms-->

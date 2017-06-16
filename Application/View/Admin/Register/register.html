@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/studyblog/Public/admin/css/ch-ui.admin.css">
+	<link rel="stylesheet" href="/studyblog/Public/admin/font/css/font-awesome.min.css">
+</head>
+<body style="background:#F3F3F4;">
+	<div class="login_box">
+		<h1>Blog</h1>
+		<h2>用户注册</h2>
+		<div class="form">
+			<form action="index.php?p=admin&c=register&a=register" method="post" enctype="multipart/form-data">
+				<ul>
+					<li>
+					<input type="text" name="username" class="text"/>
+						<span><i class="fa fa-user"></i></span>
+					</li>
+					<li>
+						<input type="password" name="password" class="text"/>
+						<span><i class="fa fa-lock"></i></span>
+					</li>
+					<li>
+						<input type="file" class="text" name="avatar" title="请选择用户头像"/>
+						<span><i class="fa fa-check-square-o"></i></span>
+					</li>
+					<li>
+						<input type="submit" value="立即注册"/>
+					</li>
+				</ul>
+			</form>
+			<p><a href="index.php?p=admin&c=Login&a=Login" >已有账号？返回立即登录</a></p>
+			<p>
+				&copy; 2016 Powered by itcast<br />
+				<a href="http://www.itcast.cn/" target="_blank">PHP高级开发攻城狮</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <title>www.myblog.com - Welcome to 我的博客 - Powered by PHP150912</title>
+    <link rel="stylesheet" rev="stylesheet" href="/studyblog/Public/home/style/default.css" type="text/css" media="all"/>
+    <script src="/studyblog/Public/home/script/common.js" type="text/javascript"></script>
+</head>
+<body class="multi index">
+
+<!-- top bar -->
+<div id="top">
+    <div class="center">
+        <div class="menu-left">
+            <ul>
+                <li><a href="javascript:;" onclick="setHomepage('http://www.myblog.com');">设为首页</a></li>
+                <li><a href="javascript:;" onclick="addFavorite('http://www.myblog.com','www.myblog.com - Welcome to 我的博客')">收藏本站</a></li>
+            </ul>
+        </div>
+        <div class="menu-right">
+            <ul id="info">
+                {if isset($smarty.session.userinfo.username)}
+                <li>欢迎 {$smarty.session.userinfo.username}！</li>
+                <li><a href="index.php?p=admin&c=index&a=index" target="_blank">管理</a></li>
+                <li><a href="index.php?p=home&c=login&a=delete">退出</a></li>
+                {else}
+                <li>欢迎，游客！</li>
+                <li><a href="index.php?p=home&c=login&a=login">登录</a></li>
+                {/if}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="divAll">
+    <div id="divPage">
+        <div id="divMiddle">
+            <div id="divTop">
+                <h1 id="BlogTitle"><a href="http://www.myblog.com">www.myblog.com</a></h1>
+                <h3 id="BlogSubTitle">Welcome to 我的博客</h3>
+            </div>
+            <div id="divNavBar">
+                <ul>
+                    <li id="nvabar-item-index"><a href="index.php?p=home&c=index&a=index">首页</a></li>
+                    {foreach $categorylist as $k=>$v}
+                    {if $v['pid'] eq 0}
+                    <li id="nvabar-item-index"><a href="index.php?p=home&c=article&a=list&category={$v.id}">{$v.name}</a></li>
+                    {/if}
+                    {/foreach}
+                    <li id="navbar-page-2"><a href="">留言本</a></li>
+                </ul>
+            </div>
